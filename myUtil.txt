@@ -1,0 +1,12 @@
+// CMD compilation de package
+/ Le principe est que le fichier java du package est dans le root directory, mais que la class est dans une sous dossier
+1 - dans le fichier qui sera un package
+            package subFolderName;
+2 - dans le fichier main
+            import subForlderName.ClassName;
+3 - utilisation du package dans le main
+            ClassName cn = new ClassName(); // via un constructeur implicide, si non créé
+4 - Compiler le package
+            javac -d . ClassName.java // le package
+5 - Compiler le fichier main
+            javac Fichier.java
