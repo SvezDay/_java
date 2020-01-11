@@ -12,7 +12,7 @@ import java.lang.StringBuffer;
 
 
 public class Air {
-    private int[][][] tab;
+    private int[][] tab;
     /**
      * Constructeur par défaut initialisé avec une largeur de 6
      */
@@ -30,7 +30,7 @@ public class Air {
      */
     public Air(int largeur){
         // Créer un tableau à 2 dimentions
-        tab = new int[largeur][largeur][2];
+        tab = new int[largeur][largeur];
   
         // Initialiser les valeurs par défaut du tableau
           this.init();
@@ -56,14 +56,14 @@ public class Air {
      * @params: x numéro de la ligne du tableau, y n° de la colonne
      */
     public int getValue(int x, int y){
-        return this.tab[x][y][0];
+        return this.tab[x][y];
     }
 
     /**
      * @params: x numéro de la ligne du tableau, y n° de la colonne
      */
     public void setBombe(int x, int y){
-        this.tab[x][y][0] = -1;
+        this.tab[x][y] = -1;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Air {
      *          et nb le nombre de bombe à proximité
      */
     public void setValue(int x, int y, int nb){
-        this.tab[x][y][0] = nb;
+        this.tab[x][y] = nb;
     }
 
 
@@ -85,8 +85,7 @@ public class Air {
     private void init(){
         for(int i = 0; i < this.tab.length; i++){
             for(int j = 0; j < this.tab[i].length; j++){
-                tab[i][j][0] = -2;
-                tab[i][j][1] = 0;
+                tab[i][j] = -2;
             }
         }
     }
@@ -106,13 +105,13 @@ public class Air {
             for(int j = 0; j < this.tab[i].length; j++){
                 rowUp.append("-----");
 
-                if(tab[i][j][0] >= 0)
+                if(tab[i][j] >= 0)
                     values.append(" ");
 
-                if(tab[i][j][0] == 0){
+                if(tab[i][j] == 0){
                     values.append(" " + " " + " |");
                 }else{
-                    values.append(" " + tab[i][j][0] + " |");
+                    values.append(" " + tab[i][j] + " |");
                 }
             }
             // Affichage de ligne par ligne
@@ -144,13 +143,13 @@ public class Air {
             for(int j = 0; j < this.tab[i].length; j++){
                 rowUp.append("-----");
 
-                if(tab[i][j][0] >= 0)
+                if(tab[i][j] >= 0)
                     values.append(" ");
 
                 // Les cellules à 0 ne sont pas affichées
                 // Les cellules non découverte ne sont pas affichées non plus
-                if((tab[i][j][0] != 0) && (tab[i][j][1] == 1)){
-                    values.append(" " + tab[i][j][0] + " |");
+                if((tab[i][j] != 0) && (true)){
+                    values.append(" " + tab[i][j] + " |");
                 }else{
                     values.append(" " + " " + " |");
                 }
@@ -174,7 +173,7 @@ public class Air {
      * 
      */
     public boolean isEmpty(int x, int y){
-        return this.tab[x][y][0] == -2 ? true : false;
+        return this.tab[x][y] == -2 ? true : false;
     }
 
     /**
@@ -182,7 +181,7 @@ public class Air {
      * @return: boolean
      */
     public boolean isBombe(int x, int y){
-        return this.tab[x][y][0] == -1 ? true : false;
+        return this.tab[x][y] == -1 ? true : false;
     }
 
 
