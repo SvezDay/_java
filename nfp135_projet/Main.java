@@ -10,6 +10,7 @@ import java.util.regex.*;
  */
 import pkg.Air;
 import pkg.Bombe;
+import pkg.Demine;
 
 
 public class Main {
@@ -20,14 +21,14 @@ public class Main {
         System.out.println("Bienvenue dans le jeu du démineur !");
 
         // Lancement
-        //run();
+        run();
 
         // Test
 
-        Air a2 = new Air();
-        Bombe.miner(a2, 6);
-        Bombe.evaluate(a2);
-        a2.afficherResult();
+        // Air a2 = new Air();
+        // Bombe.miner(a2, 6);
+        // Bombe.evaluate(a2);
+        // a2.afficherResult();
         
     }
     
@@ -52,17 +53,50 @@ public class Main {
         Air jeu = new Air(taille);
         Bombe.miner(jeu, bombe);
         Bombe.evaluate(jeu);
-        jeu.afficher();
+        //jeu.afficher();
+        jeu.afficherResult();
 
         // Jeu
         boolean fin = false;
         while(!fin){
-
-            fin = true;
+            // Récupère auprès du joueur les coordonnées d'une case à déminer
+            int[] coord = call(taille, scan);
+            // Vérifie si une bombe est placé sur la case
+            Boolean check = jeu.isBombe(coord[0], coord[1]);
+            if(check){
+                System.out.println("BOOM !");
+                // Afficher la carte avec les bombes                                           <----- 
+                jeu.afficher();
+                fin = true;
+            }else{
+                // Découvrir et Afficher
+                jeu.decouvre(coord[0], coord[1]);
+                jeu.afficherResult();
+            }
         }
 
         // Fin de partie
         rerun();
+    }
+
+    /**
+     * Fonction demande au joueur de choisir une case à déminer
+     * @params: taille du jeur, scanner, réutilise le même scanner
+     * @return: int[] retourne les coordonnées x, y de la case à déminer
+     */
+    private static int[] call(int taille, Scanner scan){
+        // Ajouter un contrôle des coordonnées reçues                                       <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+        int[] vars = new int[2];
+
+        // Demande les coordonnées d'une case
+        System.out.println("Choisissez les coordonnées ligne, colonne d'une case");
+        System.out.printf("Choissiez une ligne de 0 à : %d : ", taille  - 1);
+        vars[0] = scan.nextInt();
+        System.out.printf("Choissiez une colonne de 0 à : %d :", taille - 1);
+        vars[1] = scan.nextInt();
+        return vars;
     }
 
     /**
