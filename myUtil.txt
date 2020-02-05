@@ -10,3 +10,15 @@
             javac -d . ClassName.java // le package
 5 - Compiler le fichier main
             javac Fichier.java
+    
+// Créer un exécutable
+1 - Créer un fichier MANIFEST.MF avec
+            Main-Class: Main                // le nom du fichier compilé
+            Class-Paht: /jar/fichier.jar    // pour ajouter un autre exécutable
+                                            // + un saut de ligne tant tous les cas
+2 - créer le dossier exécutable
+        jar cvmf ./MANIFEST.MF prog.jar *.class
+
+3 - lancer le dossier exécutable    
+        java -jar prog.jar
+            

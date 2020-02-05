@@ -4,13 +4,13 @@
 //import java.util.*;
 import java.util.Scanner;
 import java.util.regex.*;
+import java.io.*;
 
 /**
  * Package 
  */
 import pkg.Air;
 import pkg.Bombe;
-import pkg.Demine;
 
 
 public class Main {
@@ -21,7 +21,12 @@ public class Main {
         System.out.println("Bienvenue dans le jeu du démineur !");
 
         // Lancement
-        run();
+        try {
+            run();    
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
 
         // Test
 

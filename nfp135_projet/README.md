@@ -1,7 +1,7 @@
 Ce jeu de démineur est écrit en Java.
 
 # Compilation cmd, pour le démarrage, avant le makefile
-- javac -d . Air.java Bombe.java Demine.java && javac Main.java && java Main
+- javac -d . Air.java Bombe.java && javac Main.java && java Main
 
 # Compilation makefile
 

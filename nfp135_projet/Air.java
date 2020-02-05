@@ -209,25 +209,33 @@ public class Air {
      * Etape 5: si E4, récursion
      */
     public void decouvre(int x, int y){
-        System.out.println(" Fonction découvre ");
         // Etape 0
+        System.out.println(" Fonction découvre etape 0 ");
         devoile(x, y);
         boolean checkFirst = isNull(x, y);
-        if(!checkFirst){
+        System.out.format(" Fonction découvre etape 0 - checkFirst: %b", checkFirst);
+        System.out.println();
+        if(checkFirst){
             // Etape 1
+            System.out.println(" Fonction découvre etape 1 ");
             int[][] zone = definirZone(x, y);
-    
+            
             // Etape 2
+            System.out.println(" Fonction découvre etape 2 ");
+
             for(int i = 0; i < zone.length; i++){
                 // Etape 3
+                System.out.println(" Fonction découvre etape 3 ");
                 devoile(zone[i][0], zone[i][1]);
     
                 // Etape 4
+                System.out.println(" Fonction découvre etape 4 ");
                 boolean checkSecond = isNull(zone[i][0], zone[i][1]);
                 if(checkSecond){
     
                     // Etape 5
-                    decouvre(zone[i][0], zone[i][1]);
+                    System.out.println(" Fonction découvre etape 5 ");
+                    //decouvre(zone[i][0], zone[i][1]);
                     System.out.format("zone length: %d, i: %d ", zone.length, i);
                     System.out.println(" - ");
                 }
@@ -265,8 +273,15 @@ public class Air {
                 }
             }   
         }
-
+        showZone(zone);
         return zone;
+    }
+
+    private void showZone(int[][] zone){
+        for(int i = 0; i < zone.length; i++){
+            System.out.format("zone x: %d, y: %d - length: %d ", zone[i][0], zone[i][1], zone.length);
+            System.out.println();
+        }
     }
 
     /**
@@ -274,7 +289,9 @@ public class Air {
      * @params: coordonnées x, y d'une case
      */
     private void devoile(int x, int y){
+        System.out.println(" Fonction dévoile");
         this.tab[x][y][1] = 1;
+
     }
 
 
